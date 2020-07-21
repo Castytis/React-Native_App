@@ -4,7 +4,6 @@ import { Card, Icon } from 'react-native-elements';
 import { DISHES } from '../shared/dishes';
 import { COMMENTS } from '../shared/comments';
 import { render } from 'react-dom';
-import { Card, Icon } from 'react-native-elements';
 
 function RenderDish(props) {
     const dish = props.dish;
