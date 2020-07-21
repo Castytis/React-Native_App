@@ -78,19 +78,8 @@ class About extends Component {
                     </Card>
                 </ScrollView>
             );
-        }
-    }
-
-        return (
-            <ScrollView>
-                <History/>
-                <Card title="Corporate Leadership">
-                <FlatList data={this.props.leaders.leaders} renderItem={renderLeader} keyExtractor={item => item.id.toString()}
-                    />
-                </Card> 
-            </ScrollView>            
-        );
+        };
     };
-};
+}
 
 export default connect(mapStateToProps)(About);
