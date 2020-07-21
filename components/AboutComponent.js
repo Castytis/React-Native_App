@@ -1,7 +1,8 @@
-import React, { Component } from 'react'
-import { ScrollView, View, FlatList, Text } from 'react-native';
-import { Card, ListItem } from 'react-native-elements'
-import { LEADERS } from '../shared/leaders'
+import React, { Component } from 'react';
+import { ScrollView, View, Text } from 'react-native';
+import { Card, ListItem } from 'react-native-elements';
+import { FlatList } from 'react-native-gesture-handler';
+import { LEADERS } from '../shared/leaders';
 
 function History() {
 
@@ -19,3 +20,60 @@ function History() {
         </Card>
     );
 };
+
+function CorporateLeadership(props) {
+    const leaders = props.leaders;
+
+    if (leaders  != null) {
+
+        const renderLeader = ({item, index}) => {
+            return(
+                <ListItem 
+                 key={index}
+                 title={item.name} 
+                 subtitle={item.description}
+                 hideChevron={true}
+                 leftAvatar={{ source: require('./images/alberto.png')}} />
+            );
+        };
+
+        return(
+            <Card title='Corporate Leadership'>
+                <FlatList
+                    data={leaders}
+                    renderItem={renderLeader}
+                    keyExtractor={item => item.id.toString()}
+                    />                
+            </Card>
+        );
+     } 
+
+    else {
+        return(<View></View>)
+    }
+}
+
+class AboutUs extends Component{
+
+    constructor(props){
+        super(props);
+        this.state = {
+            leaders: LEADERS
+        };
+    }
+
+    static navigationOptions = {
+        title: 'About Us'
+    };
+
+    render() {
+        return(
+                <ScrollView>
+                    <History />
+                    <CorporateLeadership leaders={this.state.leaders}/>
+                </ScrollView>
+        );
+    };
+}
+
+export default AboutUs;
